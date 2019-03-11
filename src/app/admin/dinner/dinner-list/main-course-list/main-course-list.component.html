@@ -1,0 +1,23 @@
+<div class="col-sm-12">
+    <h3 class="text-center">Lista drugich dań:</h3>
+    <div class="form-group py-2">
+        <input id="search" class="col-sm-8 form-control" [(ngModel)]="searchDinnerName" placeholder="Wyszukaj drugie danie...">
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" [ngClass]="{'active': checkedDinnerIds.includes(dinner.id)}"  *ngFor="let dinner of dinners | dinnerSearch : searchDinnerName | paginate: {itemsPerPage: 5, currentPage: p, id: 'main-course'} ; index as i">
+            <app-course-item
+                    [dinner]="dinner"
+            ></app-course-item>
+        </li>
+        <pagination-controls
+                id="main-course"
+                class="text-center py-2 pagination-controls"
+                (pageChange)="p = $event"
+                directionLinks="true"
+                autoHide="true"
+                responsive="true"
+                previousLabel="Poprzedni"
+                nextLabel="Następny"
+        ></pagination-controls>
+    </ul>
+</div>

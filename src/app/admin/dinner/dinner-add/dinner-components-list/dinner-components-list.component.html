@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <div class="col-sm-12">
+    <h3 class="text-center">Lista składników:</h3>
+    <div class="form-group py-2">
+      <input id="search" class="col-sm-8 form-control" [(ngModel)]="searchComponentName" placeholder="Wyszukaj składnik...">
+    </div>
+    <ul class="list-group mt-3">
+      <app-components-list-item
+              *ngFor="let component of components | componentSearch : searchComponentName | paginate: {itemsPerPage: 10, currentPage: p} ; index as i"
+              [component]="component"
+      ></app-components-list-item>
+      <pagination-controls
+              class="text-center py-2 pagination-controls"
+              (pageChange)="p = $event"
+              directionLinks="true"
+              autoHide="true"
+              responsive="true"
+              previousLabel="Poprzedni"
+              nextLabel="Następny"
+      ></pagination-controls>
+    </ul>
+  </div>
+</div>

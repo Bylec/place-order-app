@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#adminNavbar" *ngIf="authService.isAdmin()"
+            aria-controls="adminNavbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="adminNavbar" *ngIf="authService.isAdmin()">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="navbar-brand" routerLink="/admin">Dashboard</a>
+            </li>
+            <li ngbDropdown class="nav-item">
+                <button class="btn btn-light nav-link" id="navbarDinner" aria-expanded="false" ngbDropdownToggle>Obiady</button>
+                <div ngbDropdownMenu aria-labelledby="navbarDinner">
+                    <a class="dropdown-item" routerLink="/admin/dinner/add" routerLinkActive="active">Nowy</a>
+                    <a class="dropdown-item" routerLink="/admin/dinner/list" routerLinkActive="active">Lista</a>
+                </div>
+            </li>
+            <li ngbDropdown class="nav-item">
+                <button class="btn btn-light nav-link" id="navbarOrder" aria-expanded="false" ngbDropdownToggle>Zamówienia</button>
+                <div ngbDropdownMenu aria-labelledby="navbarOrder">
+                    <a class="dropdown-item" routerLink="admin/order" routerLinkActive="active">Dzisiejsze menu</a>
+                    <a class="dropdown-item" routerLink="admin/order/history" routerLinkActive="active">Historia</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#userNavbar" *ngIf="authService.isUser()"
+            aria-controls="userNavbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="userNavbar" *ngIf="authService.isUser()">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/" routerLinkActive="active">Zamówienie</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/order-list" routerLinkActive="active">Lista dzisiejszych zamówień</a>
+            </li>
+        </ul>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
+            aria-controls="#myNavbar" aria-expanded="false" aria-label="Toggle navigation" (click)="isShown = !isShown">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="myNavbar" [class.show]="isShown">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item" *ngIf="!authService.isAuthenticated()">
+                <a class="nav-link navbar-brand" routerLink="/signin">Zaloguj</a>
+            </li>
+            <li class="nav-item" *ngIf="!authService.isAuthenticated()">
+                <a class="nav-link navbar-brand" routerLink="/signup">Zarejestruj</a>
+            </li>
+            <li class="nav-item" *ngIf="authService.isAuthenticated()">
+                <a class="nav-link navbar-brand" style="cursor: pointer" (click)="logout()">Wyloguj</a>
+            </li>
+        </ul>
+    </div>
+</nav>

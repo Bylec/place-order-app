@@ -1,0 +1,29 @@
+<div>
+    <div class="jumbotron">
+        <h4 class="display-4">Dzisiejsze menu.</h4>
+        <p *ngIf="menuCount === 0" class="lead">Przejdź do zakładki z listą obiadów i wybierz dzisiejsze menu.</p>
+        <p *ngIf="menuCount !== 0 && !isMenuAdded" class="lead">Jest to menu wybrane przez Ciebie z listy obiadów. Aby potwierdzić naciśnij przycisk Potwierdź
+            menu.</p>
+        <p *ngIf="isMenuAdded" class="lead">Dzisiejsze menu zostało już wybrane.</p>
+    </div>
+    <div class="py-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4" *ngFor="let dinner of currentMenu.mainCourse">
+                    <app-dinner-details [isMenuAdded]="isMenuAdded" [dinner]="dinner"></app-dinner-details>
+                </div>
+                <div class="col-sm-4" *ngFor="let dinner of currentMenu.firstCourse">
+                    <app-dinner-details [isMenuAdded]="isMenuAdded" [dinner]="dinner"></app-dinner-details>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center" *ngIf="!isMenuAdded">
+            <button [disabled]="menuCount !== 3" class="btn btn-primary btn-lg" (click)="onSaveMenu()">Potwierdź menu</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+

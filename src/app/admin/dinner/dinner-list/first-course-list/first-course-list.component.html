@@ -1,0 +1,31 @@
+<div class="col-sm-12">
+  <h3 class="text-center">Lista zup:</h3>
+  <!--<mat-form-field appearance="outline" class="col-sm-6">-->
+    <!--<mat-label>Wyszukaj pier:</mat-label>-->
+    <!--<input-->
+          <!--matInput-->
+          <!--type="text"-->
+          <!--[(ngModel)]="searchDinnerName"-->
+  <!--&gt;-->
+  <!--</mat-form-field>-->
+  <div class="form-group">
+    <input id="search" class="col-sm-8 form-control" [(ngModel)]="searchDinnerName" placeholder="Wyszukaj pierwsze danie...">
+  </div>
+  <ul class="list-group py-2">
+    <li class="list-group-item" [ngClass]="{'active': checkedDinnerIds.includes(dinner.id)}" *ngFor="let dinner of dinners | dinnerSearch : searchDinnerName | paginate: {itemsPerPage: 5, currentPage: p, id: 'first-course'} ; index as i">
+      <app-course-item
+              [dinner]="dinner"
+      ></app-course-item>
+    </li>
+    <pagination-controls
+            id="first-course"
+            class="text-center py-2 pagination-controls"
+            (pageChange)="p = $event"
+            directionLinks="true"
+            autoHide="true"
+            responsive="true"
+            previousLabel="Poprzedni"
+            nextLabel="Następny"
+    ></pagination-controls>
+  </ul>
+</div>

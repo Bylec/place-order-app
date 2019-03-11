@@ -1,0 +1,34 @@
+<p style="cursor: pointer" (click)="onCourseClick()"><strong>{{dinner.name}}</strong></p>
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Szczegóły
+        </mat-panel-title>
+        <mat-panel-description>
+            Naciśnij
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="card">
+        <img class="card-img-top" style="height: 260px; width: 100%; display: block;" src="{{dinner.photo}}">
+        <div class="card-body">
+            <p class="card-text">Cena: {{dinner.price}} zł</p>
+            <hr>
+            <div *ngIf="dinner.components.length !== 0">
+                <p class="card-text">Składniki: </p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" *ngFor="let component of dinner.components">
+                        {{component.name}}
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <mat-action-row>
+        <div class="btn-group">
+            <button class="btn btn-sm btn-light" [routerLink]="['/admin/dinner/edit', dinner.id]">Edytuj</button>
+            <button class="btn btn-sm btn-outline-danger" (click)="onDinnerDelete()">Usuń</button>
+        </div>
+    </mat-action-row>
+</mat-expansion-panel>

@@ -1,0 +1,19 @@
+<div class="jumbotron">
+    <h4 class="display-4">Zarządzanie obiadami.</h4>
+    <p class="lead">Obiad składa się minimalnie z jednego, maksymalnie z trzech składników.</p>
+</div>
+<div class="py-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <app-dinner-edit
+                        [dinner]="dinner | async"
+                        [id]="id"
+                ></app-dinner-edit>
+            </div>
+            <div class="col-sm-6">
+                <app-dinner-components-list></app-dinner-components-list>
+            </div>
+        </div>
+    </div>
+</div>

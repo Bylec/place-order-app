@@ -1,0 +1,17 @@
+<div class="jumbotron">
+  <h4 class="display-4">Lista obiadów.</h4>
+  <p *ngIf="!isMenuAdded" class="lead">Naciśnij nazwe dania aby dodać/usunąć z dzisiejszego menu.</p>
+  <p *ngIf="isMenuAdded" class="lead">Dzisiejsze menu zostało już wybrane.</p>
+</div>
+<div class="py-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <app-main-course-list [checkedDinnerIds]="checkedDinnerIds['main-course']" [dinners]="dinners | dinnerCourse : 'main-course'  | async"></app-main-course-list>
+      </div>
+      <div class="col-sm-6">
+        <app-first-course-list [checkedDinnerIds]="checkedDinnerIds['first-course']" [dinners]="dinners | dinnerCourse : 'first-course' | async"></app-first-course-list>
+      </div>
+    </div>
+  </div>
+</div>
